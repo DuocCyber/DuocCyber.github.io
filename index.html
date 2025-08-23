@@ -164,4 +164,61 @@
   </body>
   <script src="./static/js/script.js?v=1"></script>
   <script src="./static/toast-cute/cute-alert.js"></script>
+
+        
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+function showBlockPopup() {
+    Swal.fire({
+        title: "Đừng Cố F12 nữa hãy tự viết đi bro",
+        text: "Sorry, you can't view or copy source codes this way!",
+        icon: "warning",
+        confirmButtonText: "OK"
+    });
+}
+
+
+document.onkeydown = function(e) {
+    if (e.keyCode == 123) { // F12
+        showBlockPopup();
+        return false;
+    }
+    if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) {
+        showBlockPopup();
+        return false;
+    }
+    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+        showBlockPopup();
+        return false;
+    }
+};
+
+
+document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+    showBlockPopup();
+}, false);
+
+
+setInterval(function() {
+    if (window.outerWidth - window.innerWidth > 200 ||
+        window.outerHeight - window.innerHeight > 200) {
+        document.body.innerHTML = "<h1 style='color:red;text-align:center;margin-top:20%'>DevTools bị cấm!</h1>";
+    }
+}, 500);
+
+
+(function() {
+    var element = new Image();
+    Object.defineProperty(element, 'id', {
+        get: function () {
+            document.body.innerHTML = "<h1 style='color:red;text-align:center;margin-top:20%'>DevTools không được phép!</h1>";
+        }
+    });
+    console.log(element);
+})();
+</script>
+
 </html>
